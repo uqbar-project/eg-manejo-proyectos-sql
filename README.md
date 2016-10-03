@@ -13,3 +13,7 @@ Muestra cómo resolver el [enunciado del manejo](https://docs.google.com/documen
 * creación de tablas y objetos de la base de datos, 
 * un fixture 
 * y queries de ejemplo.
+
+## Diagrama Entidad-Relación
+
+![DER](images/DER_manejoProyectos.png)
