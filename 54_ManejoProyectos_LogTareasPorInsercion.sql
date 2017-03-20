@@ -1,3 +1,5 @@
+USE manejo_proyectos;
+
 -- 4 Cada vez que se agregue una tarea a un proyecto hay que generar un log, con la fecha, 
 -- la descripción del evento ("Alta de tarea") y la referencia a la tarea generada.
 DROP TABLE IF EXISTS LogTareas;

@@ -1,3 +1,4 @@
+USE manejo_proyectos;
  
 -- 3 Cuál es el costo de una tarea
 DROP FUNCTION IF EXISTS CostoTarea;
