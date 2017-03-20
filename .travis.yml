@@ -1,0 +1,9 @@
+install: true
+
+service:
+  - mysql
+
+before_install:
+  - mysql -u root --default-character-set=utf8 10_ManejoProyectos_DDL_MySQL.sql
+  - mysql -u root --default-character-set=utf8 20_ManejoProyectos_Fixture_MySQL.sql
+

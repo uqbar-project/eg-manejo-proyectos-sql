@@ -8,8 +8,7 @@ CREATE FUNCTION CostoTarea(TareaDescripcion VARCHAR(150)) RETURNS NUMERIC(11, 2)
 BEGIN
    DECLARE CostoBase NUMERIC(11, 2) DEFAULT 0;
    DECLARE CostoDefault NUMERIC(11, 2) DEFAULT 0;
-   DECLARE TareaConOverhead BOOLEAN DEFAULT FALSE;
-
+   
    SELECT COMPLEJIDAD, TIEMPO, ID
      INTO @Complejidad, @Tiempo, @Id_Tarea
      FROM TAREAS
@@ -34,10 +33,6 @@ BEGIN
           SELECT *
             FROM TAREAS_CON_OVERHEAD
            WHERE TAREAPADRE_ID = @Id_Tarea)) THEN
-       SET TareaConOverhead = TRUE;
-    END IF;
-
-    IF (TareaConOverhead) THEN
        SET CostoBase = CostoBase * 1.04;
     END IF;
 

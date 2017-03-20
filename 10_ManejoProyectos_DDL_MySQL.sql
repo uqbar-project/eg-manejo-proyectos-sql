@@ -1,3 +1,9 @@
+DROP DATABASE IF EXISTS manejo_proyectos;
+
+CREATE DATABASE manejo_proyectos;
+
+USE manejo_proyectos;
+
 CREATE TABLE IMPUESTOS (
 	Id int AUTO_INCREMENT NOT NULL PRIMARY KEY,
 	Descripcion varchar (150) NULL ,

@@ -1,5 +1,5 @@
 -- 4 Cada vez que se agregue una tarea a un proyecto hay que generar un log, con la fecha, 
--- la descripción del evento ("Alta de tarea") y la referencia a la tarea generada.
+-- la descripciÃ³n del evento ("Alta de tarea") y la referencia a la tarea generada.
 DROP TABLE IF EXISTS LogTareas;
 
 CREATE TABLE LogTareas (
@@ -9,9 +9,11 @@ CREATE TABLE LogTareas (
   Tarea_Id int NOT NULL
 ) ;
 
+DROP TRIGGER IF EXISTS AltaTarea;
+
 DELIMITER |
 
-CREATE TRIGGER Alta_Tarea AFTER INSERT ON TAREAS
+CREATE TRIGGER AltaTarea AFTER INSERT ON TAREAS
 FOR EACH ROW 
 BEGIN
    INSERT INTO LogTareas
@@ -23,7 +25,7 @@ END
 
 DELIMITER ;
 
-INSERT INTO Tareas
+INSERT INTO TAREAS
 (Complejidad, Tiempo, Descripcion, Proyecto_Id)
 VALUES
 ('E', 50, 'Revision modelo de datos', 4);
@@ -31,9 +33,6 @@ VALUES
 SELECT *
   FROM LogTareas;
   
-select *
-  from Tareas where id = 15;
-
 
 
 

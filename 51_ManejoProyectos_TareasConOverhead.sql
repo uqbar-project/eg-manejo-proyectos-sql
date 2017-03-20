@@ -1,9 +1,11 @@
---  1 Saber las tareas que tienen m·s de una subtarea.
+USE manejo_proyectos;
+
+--  1 Saber las tareas que tienen m√°s de una subtarea.
 /*
 
 DROP VIEW TAREAS_CON_MAS_DE_UNA_SUBTAREA;
 
--- Esta opciÛn muestra la descripciÛn de las tareas padres
+-- Esta opci√≥n muestra la descripci√≥n de las tareas padres
 
 CREATE VIEW TAREAS_CON_MAS_DE_UNA_SUBTAREA AS
 SELECT TAREA_PADRE.DESCRIPCION, COUNT(*) AS CANTIDAD_SUBTAREAS
