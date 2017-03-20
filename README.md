@@ -1,5 +1,8 @@
 # Manejo de proyectos - componentes en RDBMS
 
+![Travis](https://travis-ci.org/uqbar-project/eg-manejo-proyectos-sql.svg?branch=master)
+
+
 ## Prerrequisitos
 
 Necesitás instalar un motor de base de datos relacional (te recomendamos [MySQL](https://www.mysql.com/) que es OpenSource y gratuito)
