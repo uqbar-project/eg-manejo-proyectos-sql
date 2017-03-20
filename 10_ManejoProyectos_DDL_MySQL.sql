@@ -1,7 +1,3 @@
-DROP DATABASE IF EXISTS manejo_proyectos;
-
-CREATE DATABASE manejo_proyectos;
-
 USE manejo_proyectos;
 
 CREATE TABLE IMPUESTOS (

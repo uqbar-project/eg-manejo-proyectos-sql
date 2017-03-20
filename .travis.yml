@@ -1,7 +1,11 @@
+language: sql
+
 service:
   - mysql
 
 before_install:
-  - mysql -u root --default-character-set=utf8 10_ManejoProyectos_DDL_MySQL.sql
-  - mysql -u root --default-character-set=utf8 20_ManejoProyectos_Fixture_MySQL.sql
+  - mysql -e "CREATE DATABASE IF NOT EXISTS manejo_proyectos;"
+  - mysql -u root --default-character-set=utf8 manejo_proyectos < ./10_ManejoProyectos_DDL_MySQL.sql
+  - mysql -u root --default-character-set=utf8 manejo_proyectos < ./20_ManejoProyectos_Fixture_MySQL.sql
+
 
