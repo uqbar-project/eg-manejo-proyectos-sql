@@ -1,4 +1,30 @@
-USE manejo_proyectos;
+\connect manejo_proyectos
+
+CREATE FUNCTION get_proyecto(descripcion_proyecto text) RETURNS integer
+    AS 
+    $$ 
+    SELECT ID 
+      FROM PROYECTOS 
+     WHERE DESCRIPCION = descripcion_proyecto
+     LIMIT 1
+    $$
+    LANGUAGE SQL
+    IMMUTABLE
+    RETURNS NULL ON NULL INPUT;
+
+
+CREATE FUNCTION get_tarea(descripcion_tarea text) RETURNS integer
+    AS 
+    $$ 
+    SELECT ID 
+      FROM TAREAS 
+    WHERE DESCRIPCION = descripcion_tarea
+    LIMIT 1
+    $$
+    LANGUAGE SQL
+    IMMUTABLE
+    RETURNS NULL ON NULL INPUT;
+
 
 INSERT INTO PROYECTOS 
 (DESCRIPCION)
@@ -25,103 +51,74 @@ INSERT INTO IMPUESTOS
 (DESCRIPCION, VALOR)
 VALUES ('B', 5);
 
-SELECT ID 
-  INTO @Webmail
-  FROM PROYECTOS 
- WHERE DESCRIPCION = 'Webmail 2.1'
- LIMIT 1;
+INSERT INTO TAREAS
+(COMPLEJIDAD, TIEMPO, DESCRIPCION, PROYECTO_ID)
+VALUES
+('I', 10, 'Relevamiento', get_proyecto('Webmail 2.1'));
 
 INSERT INTO TAREAS
 (COMPLEJIDAD, TIEMPO, DESCRIPCION, PROYECTO_ID)
 VALUES
-('I', 10, 'Relevamiento', @Webmail);
+('E', 30, 'Desarrollo', get_proyecto('Webmail 2.1'));
 
 INSERT INTO TAREAS
 (COMPLEJIDAD, TIEMPO, DESCRIPCION, PROYECTO_ID)
 VALUES
-('E', 30, 'Desarrollo', @Webmail);
-
-INSERT INTO TAREAS
-(COMPLEJIDAD, TIEMPO, DESCRIPCION, PROYECTO_ID)
-VALUES
-('A', 2, 'Implementación', @Webmail);
-
-SELECT ID 
-  INTO @Desarrollo
-  FROM TAREAS 
- WHERE DESCRIPCION = 'Desarrollo'
- LIMIT 1;
+('A', 2, 'Implementación', get_proyecto('Webmail 2.1'));
 
 INSERT INTO TAREAS
 (COMPLEJIDAD, TIEMPO, DESCRIPCION, PROYECTO_ID, TAREAPADRE_ID)
 VALUES
-('E', 5, 'Iteración 1', @Webmail, @Desarrollo);
+('E', 5, 'Iteración 1', get_proyecto('Webmail 2.1'), get_tarea('Desarrollo'));
 
 INSERT INTO TAREAS
 (COMPLEJIDAD, TIEMPO, DESCRIPCION, PROYECTO_ID, TAREAPADRE_ID)
 VALUES
-('I', 2, 'Iteración 2', @Webmail, @Desarrollo);
+('I', 2, 'Iteración 2', get_proyecto('Webmail 2.1'), get_tarea('Desarrollo'));
 
 INSERT INTO TAREAS
 (COMPLEJIDAD, TIEMPO, DESCRIPCION, PROYECTO_ID, TAREAPADRE_ID)
 VALUES
-('A', 20, 'Iteración 3', @Webmail, @Desarrollo);
-
-SELECT ID 
-  INTO @Implementacion
-  FROM TAREAS 
- WHERE DESCRIPCION = 'Implementación'
- LIMIT 1;
+('A', 20, 'Iteración 3', get_proyecto('Webmail 2.1'), get_tarea('Desarrollo'));
 
 INSERT INTO TAREAS
 (COMPLEJIDAD, TIEMPO, DESCRIPCION, PROYECTO_ID, TAREAPADRE_ID)
 VALUES
-('I', 2, 'Implementación Sucursal Central', @Webmail, @Implementacion);
+('I', 2, 'Implementación Sucursal Central', get_proyecto('Webmail 2.1'), get_tarea('Implementación'));
 
 INSERT INTO TAREAS
 (COMPLEJIDAD, TIEMPO, DESCRIPCION, PROYECTO_ID, TAREAPADRE_ID)
 VALUES
-('E', 3, 'Implementación Sucursal Liniers', @Webmail, @Implementacion);
+('E', 3, 'Implementación Sucursal Liniers', get_proyecto('Webmail 2.1'), get_tarea('Implementación'));
 
 -- Proyecto del enunciado
 INSERT INTO PROYECTOS 
 (DESCRIPCION)
 SELECT 'Proyecto A';
-
-SELECT ID 
-  INTO @ProyectoA
-  FROM PROYECTOS 
- WHERE DESCRIPCION = 'Proyecto A'
- LIMIT 1;
  
 INSERT INTO TAREAS
 (COMPLEJIDAD, TIEMPO, DESCRIPCION, PROYECTO_ID)
 VALUES
-('A', 30, 'Tarea 1', @ProyectoA);
+('A', 30, 'Tarea 1', get_proyecto('Proyecto A'));
 
 INSERT INTO TAREAS
 (COMPLEJIDAD, TIEMPO, DESCRIPCION, PROYECTO_ID)
 VALUES
-('E', 15, 'Tarea 2', @ProyectoA);
+('E', 15, 'Tarea 2', get_proyecto('Proyecto A'));
 
 INSERT INTO TAREAS
 (COMPLEJIDAD, TIEMPO, DESCRIPCION, PROYECTO_ID)
 VALUES
-('I', 25, 'Tarea 3', @ProyectoA);
-
-SELECT ID 
-  INTO @Tarea2
-  FROM TAREAS 
- WHERE DESCRIPCION = 'Tarea 2'
- LIMIT 1;
+('I', 25, 'Tarea 3', get_proyecto('Proyecto A'));
 
 INSERT INTO TAREAS
 (COMPLEJIDAD, TIEMPO, DESCRIPCION, PROYECTO_ID, TAREAPADRE_ID)
 VALUES
-('I', 8, 'subtarea 1', @ProyectoA, @Tarea2);
+('I', 8, 'subtarea 1', get_proyecto('Proyecto A'), get_tarea('Tarea 2'));
 
 INSERT INTO TAREAS
 (COMPLEJIDAD, TIEMPO, DESCRIPCION, PROYECTO_ID, TAREAPADRE_ID)
 VALUES
-('E', 5, 'subtarea 2', @ProyectoA, @Tarea2);
+('E', 5, 'subtarea 2', get_proyecto('Proyecto A'), get_tarea('Tarea 2'));
+
 

@@ -1,18 +1,18 @@
-USE manejo_proyectos;
+\connect manejo_proyectos
 
 CREATE TABLE IMPUESTOS (
-	Id int AUTO_INCREMENT NOT NULL PRIMARY KEY,
+	Id SERIAL NOT NULL PRIMARY KEY,
 	Descripcion varchar (150) NULL ,
 	Valor numeric(18, 0) NULL 
 ) ;
 
 CREATE TABLE PROYECTOS (
-	Id int AUTO_INCREMENT NOT NULL PRIMARY KEY,
+	Id SERIAL NOT NULL PRIMARY KEY,
 	Descripcion varchar (150) NOT NULL 
 ) ;
 
 CREATE TABLE TAREAS (
-	Id int AUTO_INCREMENT NOT NULL PRIMARY KEY,
+	Id SERIAL NOT NULL PRIMARY KEY,
 	Complejidad varchar (1)  NOT NULL ,
 	Tiempo int NOT NULL ,
 	Descripcion varchar (150)  NOT NULL ,
@@ -26,7 +26,7 @@ CREATE TABLE TAREASIMPUESTOS (
 ) ;
 
 ALTER TABLE TAREASIMPUESTOS  ADD 
-	CONSTRAINT PK_TareaImpuesto PRIMARY KEY  CLUSTERED 
+	CONSTRAINT PK_TareaImpuesto PRIMARY KEY
 	(
 		Tarea_Id,
 		Impuesto_Id

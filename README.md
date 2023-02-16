@@ -5,7 +5,10 @@
 
 ## Prerrequisitos
 
-Necesitás instalar un motor de base de datos relacional (te recomendamos [MySQL](https://www.mysql.com/) que es OpenSource y gratuito)
+Tenés que tener instalado [Docker](TODO, link a docker)
+
+Explicar que es Postgresql, pgadmin, localhost:5050 poniendo el container name como conexión, ver por qué no está creando las tablas
+
 
 ## Objetivo
 
