@@ -36,6 +36,30 @@ Te dejamos un video que muestra estos pasos:
 
 Esto es solo la primera vez, cuando quieras levantar nuevamente el ejemplo solo es necesario que levantes el contenedor mediante `docker-compose up`, y luego ingresando a `http://localhost:5050/` con el usuario `admin@phm.edu.ar` vas a tener guardado en el grupo Servers a la base de datos del manejo de proyectos.
 
+## Convivencia con otros ejemplos
+
+Si querés tener levantado otros containers, tenés que cambiar el puerto publicado, tanto para el servicio de base de datos como para el cliente:
+
+```yml
+services:
+  db:
+    image: postgres:15-alpine
+    ...
+    ports:
+      - '5442:5432' # en lugar de '5432:5432'
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin4_container_proyectos
+    ...
+    ports:
+      - "5060:80"  # en lugar de '5050:80'
+```
+
+Como cada contenedor de Docker funciona en forma separada, el puerto que usa internamente no hace falta cambiarlo. 
+
+También tenés que considerar que los contenedores no pueden tener el mismo nombre (en los ejemplos no te va a pasar pero quizás sí si copiás un archivo `docker-compose.yml` y no le actualizás el container name).
+
 ## Regenerar la base de cero
 
 Si por algún motivo querés regenerar la base de cero, tené en cuenta que hay que eliminar los archivos publicados en la sección `volumes`, por lo tanto hay que ejecutar el siguiente comando:

@@ -19,7 +19,7 @@ services:
 
   pgadmin:
     image: dpage/pgadmin4
-    container_name: pgadmin4_container
+    container_name: pgadmin4_container_proyectos
     restart: always
     ports:
       - "5050:80"
