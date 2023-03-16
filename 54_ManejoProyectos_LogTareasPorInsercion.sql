@@ -4,28 +4,33 @@ USE manejo_proyectos;
 -- la descripción del evento ("Alta de tarea") y la referencia a la tarea generada.
 DROP TABLE IF EXISTS LogTareas;
 
-CREATE TABLE LogTareas (
-  Id int AUTO_INCREMENT NOT NULL PRIMARY KEY,
-  DescripcionEvento varchar (150) NULL ,
-  Fecha datetime NOT NULL ,
-  Tarea_Id int NOT NULL
-) ;
+CREATE OR REPLACE FUNCTION InsertLog() RETURNS trigger
+language plpgsql  
+as  
+$$
 
-DROP TRIGGER IF EXISTS AltaTarea;
-
-DELIMITER |
-
-CREATE TRIGGER AltaTarea AFTER INSERT ON TAREAS
-FOR EACH ROW 
-BEGIN
+BEGIN   
    INSERT INTO LogTareas
    (DescripcionEvento, Fecha, Tarea_Id)
    VALUES
-   ('Alta de Tarea ', SYSDATE(), NEW.Id);
-END
-|
+   ('Alta de Tarea ', now(), NEW.Id);
+   RETURN NULL;
+END;
 
-DELIMITER ;
+$$
+
+CREATE TABLE LogTareas (
+  Id SERIAL NOT NULL PRIMARY KEY,
+  DescripcionEvento varchar (150) NULL ,
+  Fecha TIMESTAMP NOT NULL ,
+  Tarea_Id int NOT NULL
+) ;
+
+
+CREATE OR REPLACE TRIGGER AltaTarea 
+AFTER INSERT ON TAREAS
+FOR EACH ROW 
+EXECUTE FUNCTION InsertLog();
 
 INSERT INTO TAREAS
 (Complejidad, Tiempo, Descripcion, Proyecto_Id)
