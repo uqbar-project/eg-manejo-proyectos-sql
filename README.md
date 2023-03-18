@@ -5,14 +5,14 @@
 
 ## Prerrequisitos
 
-Solo hace falta tener instalado [Docker](https://www.docker.com/)
+Solo hace falta tener instalado Docker Desktop (el pack docker engine y docker compose), seguí las instrucciones de [esta página](https://phm.uqbar-project.org/material/software) en el párrafo `Docker`.
 
 ## Instalación
 
 Para poder ejecutar el ejemplo abrí una consola de comandos y escribí
 
 ```bash
-docker-compose up
+docker compose up
 ```
 
 Eso
@@ -23,7 +23,7 @@ Eso
 - ejecuta el [script de creación de tablas](10_ManejoProyectos_DDL_MySQL.sql)
 - y el de [creación de datos del fixture](20_ManejoProyectos_Fixture_MySQL.sql)
 
-Un dato importante es que en el archivo de docker-compose debemos ordenarlos alfabéticamente, para que se ejecuten en ese orden o de lo contrario fallará al levantar (porque no va a existir la base de datos o las tablas).
+Un dato importante es que en el archivo `docker-compose.yml` debemos ordenarlos alfabéticamente, para que se ejecuten en ese orden o de lo contrario fallará al levantar (porque no va a existir la base de datos o las tablas).
 
 ## Ingreso a pgAdmin
 
@@ -34,7 +34,7 @@ Te dejamos un video que muestra estos pasos:
 
 ![configuración pgAdmin](./images/pgAdmin.gif)
 
-Esto es solo la primera vez, cuando quieras levantar nuevamente el ejemplo solo es necesario que levantes el contenedor mediante `docker-compose up`, y luego ingresando a `http://localhost:5050/` con el usuario `admin@phm.edu.ar` vas a tener guardado en el grupo Servers a la base de datos del manejo de proyectos.
+Esto es solo la primera vez, cuando quieras levantar nuevamente el ejemplo solo es necesario que levantes el contenedor mediante `docker compose up`, y luego ingresando a `http://localhost:5050/` con el usuario `admin@phm.edu.ar` vas a tener guardado en el grupo Servers a la base de datos del manejo de proyectos.
 
 ## Convivencia con otros ejemplos
 
@@ -65,10 +65,10 @@ También tenés que considerar que los contenedores no pueden tener el mismo nom
 Si por algún motivo querés regenerar la base de cero, tené en cuenta que hay que eliminar los archivos publicados en la sección `volumes`, por lo tanto hay que ejecutar el siguiente comando:
 
 ```bash
-docker-compose down --volumes
+docker compose down --volumes
 ```
 
-Y luego nuevamente `docker-compose up`.
+Y luego nuevamente `docker compose up`.
 
 ## Objetivo
 
