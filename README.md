@@ -31,7 +31,7 @@ Un dato importante es que en el archivo `docker-compose.yml` debemos nombrar los
 
 Te dejamos un video que muestra estos pasos:
 
-![configuración pgAdmin](./images/demo.mov)
+![configuración pgAdmin](./images/demo.gif)
 
 Esto es solo la primera vez, cuando quieras levantar nuevamente el ejemplo solo es necesario que levantes el contenedor mediante `docker compose up`, y luego ingresando a `http://localhost:5050/` con el usuario `admin@phm.edu.ar` vas a tener guardado en el grupo Servers a la base de datos del manejo de proyectos.
 
