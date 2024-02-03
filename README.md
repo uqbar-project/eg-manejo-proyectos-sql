@@ -1,11 +1,10 @@
 # Manejo de proyectos - componentes en RDBMS
 
-![Travis](https://travis-ci.org/uqbar-project/eg-manejo-proyectos-sql.svg?branch=master)
-
+[![build-sql](https://github.com/uqbar-project/eg-manejo-proyectos-sql/actions/workflows/build.yml/badge.svg)](https://github.com/uqbar-project/eg-manejo-proyectos-sql/actions/workflows/build.yml)
 
 ## Prerrequisitos
 
-Solo hace falta tener instalado Docker Desktop (el pack docker engine y docker compose), seguí las instrucciones de [esta página](https://phm.uqbar-project.org/material/software) en el párrafo `Docker`.
+Solo hace falta tener instalado algún Desktop de Docker (el pack docker engine y docker compose), seguí las instrucciones de [esta página](https://phm.uqbar-project.org/material/software) en el párrafo `Docker`.
 
 ## Instalación
 
@@ -23,7 +22,7 @@ Eso
 - ejecuta el [script de creación de tablas](10_ManejoProyectos_DDL_MySQL.sql)
 - y el de [creación de datos del fixture](20_ManejoProyectos_Fixture_MySQL.sql)
 
-Un dato importante es que en el archivo `docker-compose.yml` debemos ordenarlos alfabéticamente, para que se ejecuten en ese orden o de lo contrario fallará al levantar (porque no va a existir la base de datos o las tablas).
+Un dato importante es que en el archivo `docker-compose.yml` debemos nombrar los archivos de los scripts de manera que queden ordenados alfabéticamente, para que se ejecuten en ese orden o de lo contrario fallará al levantar (porque no va a existir la base de datos o las tablas).
 
 ## Ingreso a pgAdmin
 
@@ -32,7 +31,7 @@ Un dato importante es que en el archivo `docker-compose.yml` debemos ordenarlos 
 
 Te dejamos un video que muestra estos pasos:
 
-![configuración pgAdmin](./images/pgAdmin.gif)
+![configuración pgAdmin](./images/demo.mkv)
 
 Esto es solo la primera vez, cuando quieras levantar nuevamente el ejemplo solo es necesario que levantes el contenedor mediante `docker compose up`, y luego ingresando a `http://localhost:5050/` con el usuario `admin@phm.edu.ar` vas a tener guardado en el grupo Servers a la base de datos del manejo de proyectos.
 
@@ -43,7 +42,7 @@ Si querés tener levantado otros containers, tenés que cambiar el puerto public
 ```yml
 services:
   db:
-    image: postgres:15-alpine
+    image: postgres:xxxx-alpine # la versión de Postgres minimalista
     ...
     ports:
       - '5442:5432' # en lugar de '5432:5432'
