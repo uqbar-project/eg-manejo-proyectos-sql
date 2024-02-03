@@ -1,4 +1,4 @@
-USE manejo_proyectos;
+-- \CONNECT manejo_proyectos;
 
 -- 2 Saber si un proyecto tiene alguna tarea que contenga el string "subtarea" 
 DROP VIEW IF EXISTS TAREAS_QUE_CONTENGAN_SUBTAREA;

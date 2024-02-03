@@ -1,4 +1,4 @@
-USE manejo_proyectos;
+-- \CONNECT manejo_proyectos;
 
 --  1 Saber las tareas que tienen más de una subtarea.
 /*
@@ -37,8 +37,3 @@ SELECT TAREAPADRE_ID, COUNT(*) AS CANTIDAD_SUBTAREAS
  GROUP 
     BY TAREAPADRE_ID
 HAVING COUNT(*) > 3 ;
-
-
-
-
-

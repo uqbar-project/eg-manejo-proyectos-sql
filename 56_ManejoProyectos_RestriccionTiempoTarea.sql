@@ -1,4 +1,4 @@
-USE manejo_proyectos;
+-- \CONNECT manejo_proyectos;
 
 -- 6 que el tiempo de una tarea esté en el rango de los 2..50 días
 ALTER TABLE TAREAS
@@ -11,7 +11,4 @@ VALUES
 
 DELETE 
   FROM TAREAS where id = 17;
-
-
-
 

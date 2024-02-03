@@ -1,4 +1,4 @@
-USE manejo_proyectos;
+-- \CONNECT manejo_proyectos;
  
 -- 3 Cuál es el costo de una tarea
 DROP FUNCTION IF EXISTS CostoTarea;
@@ -57,4 +57,7 @@ BEGIN
     RETURN CostoBase;
     
 END;
-$$;  
+$$;
+
+-- Luego se ejecuta con
+-- SELECT CostoTarea('Desarrollo');
