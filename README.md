@@ -22,7 +22,12 @@ Eso
 - ejecuta el [script de creación de tablas](10_ManejoProyectos_DDL_MySQL.sql)
 - y el de [creación de datos del fixture](20_ManejoProyectos_Fixture_MySQL.sql)
 
-Un dato importante es que en el archivo `docker-compose.yml` debemos nombrar los archivos de los scripts de manera que queden ordenados alfabéticamente, para que se ejecuten en ese orden o de lo contrario fallará al levantar (porque no va a existir la base de datos o las tablas).
+En el archivo `docker-compose.yml` 
+
+- pasamos a una carpeta dentro del contenedor los scripts
+- ejecutamos la creación de la base de datos, luego las tablas y por último creamos los datos
+
+Es importante generar nombres de archivo para los scripts que queden ordenados alfabéticamente, para que se ejecuten en ese orden o de lo contrario fallará al levantar (porque no va a existir la base de datos o las tablas). Por eso cada archivo tiene como prefijo dos números que permiten establecer el orden: el archivo `init_db` se copia como `01_init_db.sh` en la carpeta entrypoint de nuestro container, el archivo `10_ManejoProyectos_DDL_MySQL.sql` se copia como `02_create_tables.sql`, etc.
 
 ## Ingreso a pgAdmin
 
