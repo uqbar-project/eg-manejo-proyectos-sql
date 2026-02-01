@@ -1,0 +1,3 @@
+CREATE DATABASE manejo_proyectos;
+CREATE USER docker WITH ENCRYPTED PASSWORD 'docker';
+GRANT ALL PRIVILEGES ON DATABASE manejo_proyectos TO docker;

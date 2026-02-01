@@ -1,6 +1,6 @@
 services:
   db:
-    image: postgres:17-alpine
+    image: postgres:18-alpine
     container_name: manejo_proyectos_sql
     restart: always
     environment:
@@ -12,7 +12,7 @@ services:
       - db:/var/lib/postgresql/data
       # ojo! deben estar en orden para que no se ejecute primero la creación del fixture
       # y luego las tablas sin tener la base de datos creada
-      - ./init_db.sh:/docker-entrypoint-initdb.d/01_init_db.sh
+      - ./01_init_db.sql:/docker-entrypoint-initdb.d/01_init_db.sql
       - ./10_ManejoProyectos_DDL_MySQL.sql:/docker-entrypoint-initdb.d/02_create_tables.sql
       - ./20_ManejoProyectos_Fixture_MySQL.sql:/docker-entrypoint-initdb.d/03_create_fixture.sql
 
